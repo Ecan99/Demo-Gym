@@ -69,6 +69,12 @@ img {
     align-items: center;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
 .nav-brand {
     font-size: 1.8rem;
     font-weight: 800;
@@ -124,6 +130,56 @@ img {
 .nav-cta:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+    position: relative;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: var(--sky-blue);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Show hamburger on mobile */
+@media (max-width: 968px) {
+    .hamburger {
+        display: flex !important;
+    }
+    
+    .nav-cta {
+        font-size: 0.85rem;
+        padding: 0.6rem 1.2rem;
+    }
 }
 
 /* ===== HERO SECTION ===== */
@@ -665,8 +721,8 @@ img {
 }
 
 .social-btn svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     flex-shrink: 0;
 }
 
@@ -748,7 +804,41 @@ img {
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 968px) {
+    .hamburger {
+        display: flex;
+    }
+
     .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 300px;
+        height: 100vh;
+        background: var(--light-black);
+        flex-direction: column;
+        padding: 6rem 2rem 2rem;
+        gap: 1.5rem;
+        transition: right 0.4s ease;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-menu li {
+        width: 100%;
+    }
+
+    .nav-menu a {
+        display: block;
+        padding: 1rem;
+        font-size: 1.1rem;
+        border-bottom: 1px solid rgba(0, 191, 255, 0.1);
+    }
+
+    .nav-menu a::after {
         display: none;
     }
 
